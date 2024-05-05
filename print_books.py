@@ -3,9 +3,10 @@
 # import sys
 from pypdf import PdfWriter, PdfReader
 
-dokument = "/home/devja318/Pulpit/styleguidebash.pdf"
-reader = PdfReader(dokument)
+DOKUMENT = "/home/devja318/Dokumenty/AWKSED.pdf"
+OUTPUT = "/home/devja318/Dokumenty/OUTPUTs/do_druku.pdf"
 
+reader = PdfReader(DOKUMENT)
 number_of_pages  = len(reader.pages)
 
 if number_of_pages%4 == 0:
@@ -36,18 +37,19 @@ for i in range(do_until):
 	pages_back = pages_back + 2 
 
 merger = PdfWriter()
-input = open(dokument, "rb")
+input = open(DOKUMENT, "rb")
 
-print(book_pages)
 for i in book_pages:
 	try:
 		merger.append(input, [i-1])
 	except:
 		merger.append(input, [0])
 
-output = open("document-output.pdf", "wb")
+output = open(OUTPUT, "wb")
 merger.write(output)
 
 merger.close()
 output.close()
 
+print("Wydrukuj najpierw: 1-", str(int(len(x)/2)))
+print("Następnie obróć i wydrukuj: ", str(int((len(x)/2+1)), "-", str(len(x)))
